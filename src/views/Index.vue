@@ -1,9 +1,8 @@
 <template>
   <div class="menu">
-    <MenuOption  v-for="(color,index) in colors"
+    <MenuOption v-for="(option,index) in options"
       :key="index"
-      :option="options[index]"
-      :color="color"
+      v-bind="option"
     />
   </div>
 </template>
@@ -20,8 +19,10 @@ export default {
   },
   data() {
     return {
-      colors: [],
-      options: ["Generate", "Explore"]
+      options: [
+        { color: {}, label: "Generate", route: "/generate" },
+        { color: {}, label: "Explore", route: "/explore" }
+      ]
     }
   },
   methods: {
@@ -34,7 +35,9 @@ export default {
     const apiCall = `https://www.thecolorapi.com/scheme?hex=${color}&mode=analogic&count=2`
     axios.get(apiCall)
       .then(res => {
-        this.colors = res.data.colors
+        this.options.map((option, i) => {
+          option.color = res.data.colors[i];
+        })
       })
       .catch(e => {
         this.errors.push(e)

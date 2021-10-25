@@ -1,5 +1,15 @@
 <template>
-  <a href="#" class="option" v-bind:style="{ backgroundColor: color.hex.value, color: color.contrast.value}"> {{ option }} </a>
+  <router-link
+    v-if="color.hex"
+    :to="route"
+    class="option"
+    v-bind:style="{
+      backgroundColor: color.hex.value,
+      color: color.contrast.value
+    }"
+  >
+    {{label}}
+  </router-link>
 </template>
 
 
@@ -7,8 +17,9 @@
 export default {
   name: 'MenuOption',
   props: {
-    option: String,
-    color: Object
+    color: Object,
+    label: String,
+    route: String
   }
 }
 </script>

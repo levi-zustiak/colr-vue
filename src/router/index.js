@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Index from '../views/Index.vue'
 import Generate from '../views/Generate.vue'
+import Explore from '../views/Explore.vue'
 
 const routes = [
   {
@@ -11,10 +12,12 @@ const routes = [
   {
     path: '/generate',
     name: 'Generate',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: Generate
+  },
+  {
+    path: '/explore',
+    name: 'Explore',
+    component: Explore
   }
 ]
 
