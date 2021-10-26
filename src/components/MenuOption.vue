@@ -26,11 +26,15 @@ export default {
 
 <style scoped>
   .option {
-    height: 100%;
-    width: 100%;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 64px;
+    transition: .5s;
+  }
+
+  .option:hover {
+    flex-grow: 1.2;
   }
 </style>

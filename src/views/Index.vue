@@ -1,5 +1,6 @@
 <template>
   <div class="menu">
+    <Logo />
     <MenuOption v-for="(option,index) in options"
       :key="index"
       v-bind="option"
@@ -11,11 +12,13 @@
 import axios from 'axios'
 
 import MenuOption from '../components/MenuOption.vue'
+import Logo from '../components/Logo.vue'
 
 export default {
   name: 'Index',
   components: {
-    MenuOption
+    MenuOption,
+    Logo
   },
   data() {
     return {
@@ -27,7 +30,7 @@ export default {
   },
   methods: {
     random: function () {
-      return Math.floor(Math.random()*16777215).toString(16);
+      return (Math.random() * 0xFFFFFF << 0).toString(16).padStart(6, '0')
     }
   },
   beforeMount() {
