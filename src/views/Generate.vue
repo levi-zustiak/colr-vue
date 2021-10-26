@@ -1,28 +1,26 @@
 <template>
-  <transition name="slide" mode="out-in">
-    <div id="generate" class="container">
-      <BackButton />
-      <Color v-for="(color, index) in colors"
-        :key="index"
-        :color="color"
-      />
-      <div class="options">
-        <div @click="getColors" class="generate-colors-button no-select">
-          <h3>Generate</h3>
-        </div>
-        <Select
-          @change="changeMode($event)"
-          :options="modes"
-          :selected="mode"
-        />
-        <Select
-          @change="changeNumber($event)"
-          :options="number"
-          :selected="count"
-        />
+  <div id="generate" class="container" @keydown.space="getColors" tabindex="0">
+    <BackButton />
+    <Color v-for="(color, index) in colors"
+      :key="index"
+      :color="color"
+    />
+    <div class="options">
+      <div @click="getColors" class="generate-colors-button no-select">
+        <h3>Generate</h3>
       </div>
+      <Select
+        @change="changeMode($event)"
+        :options="modes"
+        :selected="mode"
+      />
+      <Select
+        @change="changeNumber($event)"
+        :options="number"
+        :selected="count"
+      />
     </div>
-  </transition>
+  </div>
 </template>
 
 <script>
@@ -68,7 +66,7 @@ export default {
     },
     changeNumber: function(e) {
       this.count = e.target.value
-    }
+    },
   },
   beforeMount() {
     this.getColors()
@@ -83,12 +81,15 @@ export default {
 
 .options {
   position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   bottom: 10vh;
-  width: 100%;
   padding: 12px;
   display: flex;
   justify-content: center;
-  gap: 48px;
+  gap: 12px;
+  border-radius: 10px;
+  background-color: rgba(0,0,0,.5);
 }
 
 .generate-colors-button {

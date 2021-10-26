@@ -7,17 +7,15 @@
 </template>
 
 <script>
-import Nav from './components/Nav.vue'
 
 export default {
-  name: 'App',
-  components: {
-    Nav
-  }
+  name: 'App'
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;500;600;700;800');
+
 * {
   margin: 0;
   padding: 0;
