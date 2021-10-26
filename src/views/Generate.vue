@@ -7,11 +7,19 @@
         :color="color"
       />
       <div class="options">
-        <div @click="getColors" class="generate-colors-button">
+        <div @click="getColors" class="generate-colors-button no-select">
           <h3>Generate</h3>
         </div>
-        <Select :options="modes"/>
-        <Select :options="number" />
+        <Select
+          @change="changeMode($event)"
+          :options="modes"
+          :selected="mode"
+        />
+        <Select
+          @change="changeNumber($event)"
+          :options="number"
+          :selected="count"
+        />
       </div>
     </div>
   </transition>
@@ -34,12 +42,10 @@ export default {
   data() {
     return {
       colors: [],
-      modes: ['Analogic', 'Monochorome', 'Triadic', 'Tetradic'],
-      number: [1, 2, 3, 4, 5],
-      colorOptions: {
-        count: 5,
-        mode: 'analogic'
-      }
+      modes: ['analogic', 'complement', 'analogic-complement', 'monochrome', 'monochrome-dark', 'monochrome-light', 'triad', 'quad'],
+      number: [...Array(10).keys()].map(x=>++x).reverse(),
+      count: 5,
+      mode: 'analogic',
     }
   },
   methods: {
@@ -48,7 +54,7 @@ export default {
     },
     getColors: function () {
       const color = this.random()
-      const apiCall = `https://www.thecolorapi.com/scheme?hex=${color}&mode=${this.colorOptions.mode}&count=${this.colorOptions.count}`
+      const apiCall = `https://www.thecolorapi.com/scheme?hex=${color}&mode=${this.mode}&count=${this.count}`
       axios.get(apiCall)
         .then(res => {
           this.colors = res.data.colors
@@ -56,6 +62,12 @@ export default {
         .catch(e => {
           this.errors.push(e)
         })
+    },
+    changeMode: function(e) {
+      this.mode = e.target.value
+    },
+    changeNumber: function(e) {
+      this.count = e.target.value
     }
   },
   beforeMount() {

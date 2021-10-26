@@ -1,5 +1,5 @@
 <template>
-  <router-view v-slot="{ Component }">
+  <router-view v-slot="{ Component }" class="router-view">
     <transition name="slide-fade">
       <component :is="Component" />
     </transition>
@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import Logo from './components/Logo.vue'
+import Nav from './components/Nav.vue'
 
 export default {
   name: 'App',
   components: {
-    Logo
+    Nav
   }
 }
 </script>
@@ -34,6 +34,8 @@ export default {
   width: 100vw;
   color: #2c3e50;
   flex-direction: column;
+  height: 100vh;
+  width: 100vw;
 }
 
 a {
@@ -43,8 +45,8 @@ a {
 }
 
 .container {
-  min-height: 100vh;
-  min-width: 100vw;
+  height: 100%;
+  width: 100%;
 }
 
 .slide-fade-enter-active {
@@ -59,6 +61,15 @@ a {
 .slide-fade-leave-to {
   transform: translateX(-10%);
   opacity: 0;
+}
+
+.no-select {
+  user-select: none;
+}
+
+.router-view {
+  height: 100vh;
+  width: 100vw;
 }
 
 </style>

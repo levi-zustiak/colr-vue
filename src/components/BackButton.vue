@@ -1,6 +1,6 @@
 <template>
   <div class="back-button" @click="goBack">
-    <h4>Go back</h4>
+    <h4 class="no-select">Go back</h4>
   </div>
 </template>
 

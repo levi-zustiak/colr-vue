@@ -1,5 +1,5 @@
 <template>
-  <h1 class="logo">
+  <h1 class="logo no-select">
     <span class="C">C</span>
     <span class="o">o</span>
     <span class="l">l</span>
@@ -16,10 +16,10 @@ export default {
 <style scoped>
 .logo {
   position: absolute;
+  top: 65px;
+  left: 65px;
   font-size: 48px;
   font-weight: 800;
-  top: 50px;
-  left: 50px;
   border-radius: 8px;
   padding: 0px 10px;
 }

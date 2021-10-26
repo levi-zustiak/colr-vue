@@ -1,6 +1,6 @@
 <template>
-  <select>
-    <option v-for="option in options" :key="option">
+  <select :value="selected">
+    <option v-for="(option,index) in options" :key="index">
       {{option}}
     </option>
   </select>
@@ -9,8 +9,9 @@
 <script>
 export default {
   props: {
-    options: []
-  }
+    options: Array,
+    selected: [Number, String]
+  },
 }
 
 </script>
